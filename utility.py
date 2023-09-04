@@ -59,3 +59,10 @@ def parse_duration(duration_str):
         total_seconds = np.nan
 
     return total_seconds
+
+def get_keyword_per_state(state,data,extractor):
+    text_df = data[data['state']==state]
+    text_data = ' '.join(text_df['text'])
+    text_data = text_data.replace("\n", " ")
+    keyphrases = extractor(text_data)
+    return list(keyphrases)
